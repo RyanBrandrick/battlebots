@@ -14,7 +14,7 @@ import arena.Bullet;
  * @author Ryan
  *
  */
-public class RyanBot extends Bot {
+public class Penrose extends Bot {
 
 	/**
 	 * 
@@ -23,7 +23,7 @@ public class RyanBot extends Bot {
 	int choice = 9;
 	int xPos = (int)(Math.floor(Math.random()*300)+200);
 	int yPos = (int)(Math.floor(Math.random()*300)+200);
-	public RyanBot() {
+	public Penrose() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -43,6 +43,7 @@ public class RyanBot extends Bot {
 	@Override
 	public int getMove(BotInfo me, boolean shotOK, BotInfo[] liveBots, BotInfo[] deadBots, Bullet[] bullets) {
 		// TODO Auto-generated method stub
+		choice = 9;
 		Bullet nearestBull = bullets[0];
 		BotInfo nearestBot = liveBots[0];
 		for(int i = 0;i<deadBots.length;i++) {
@@ -115,10 +116,8 @@ public class RyanBot extends Bot {
 		}
 		
 		for(int i = 0; i<bullets.length; i++) {
-			//still need to check for walls
 			if(bullets.length>0) {
 				if(Math.sqrt(Math.pow(me.getX()-bullets[i].getX(),2)+Math.pow(me.getY()-bullets[i].getY(),2))<Math.sqrt(Math.pow(me.getX()-nearestBull.getX(),2)+Math.pow(me.getY()-nearestBull.getY(),2))){
-				//if((Math.sqrt(Math.pow(me.getX(), 2)+Math.pow(bullets[i].getX(), 2))+Math.sqrt(Math.pow(me.getY(), 2)+Math.pow(bullets[i].getY(), 2))<Math.sqrt(Math.pow(me.getX(), 2)+Math.pow(nearestBull.getX(), 2))+Math.sqrt(Math.pow(me.getX(), 2)+Math.pow(nearestBull.getY(), 2)))&&((bullets[i].getXSpeed()>0&&me.getX()>bullets[i].getX())||(bullets[i].getXSpeed()<0&&me.getX()<bullets[i].getX())||(bullets[i].getYSpeed()>0&&me.getY()>bullets[i].getY())||(bullets[i].getYSpeed()<0&&me.getY()<bullets[i].getY()))) {
 					nearestBull = bullets[i];
 				}
 				if((nearestBull.getXSpeed()>0&&me.getX()>nearestBull.getX())||(nearestBull.getXSpeed()<0&&me.getX()<nearestBull.getX())&&Math.abs(me.getX()-nearestBull.getX())<100) {
@@ -137,7 +136,6 @@ public class RyanBot extends Bot {
 						}
 					}
 				}
-				//still need to check for walls
 				else if((nearestBull.getYSpeed()>0&&me.getY()>nearestBull.getY())||(nearestBull.getYSpeed()<0&&me.getY()<nearestBull.getY())&&Math.abs(me.getY()-nearestBull.getY())<100) {
 					if((nearestBull.getX()>=me.getX()+13)&&(nearestBull.getX()<me.getX()+63)) {
 						//move down
@@ -154,14 +152,6 @@ public class RyanBot extends Bot {
 						}
 					}
 				}
-			}
-			if(((Math.abs(me.getX()-nearestBull.getX())>100)&&(Math.abs(me.getY()-nearestBull.getY())>100))||bullets.length==0){
-				for(int j =0; j<liveBots.length; j++) {
-					if((Math.sqrt(Math.pow(me.getX()-nearestBot.getX(), 2)))>(Math.sqrt(Math.pow(me.getX()-liveBots[i].getX(), 2)))){
-						nearestBot = liveBots[i];
-					}
-				}
-				//choice = (int)(Math.random()*3+1);
 			}
 		}
 		return choice;
@@ -192,7 +182,7 @@ public class RyanBot extends Bot {
 	@Override
 	public String getTeamName() {
 		// TODO Auto-generated method stub
-		return null;
+		return "Triangle";
 	}
 
 	/* (non-Javadoc)
@@ -201,7 +191,7 @@ public class RyanBot extends Bot {
 	@Override
 	public String outgoingMessage() {
 		// TODO Auto-generated method stub
-		return null;
+		return "null";
 	}
 
 	/* (non-Javadoc)
